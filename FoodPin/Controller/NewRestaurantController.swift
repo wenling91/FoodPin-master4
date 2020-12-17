@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol AddDataDelegate {
+    func addRestaurant(item: Restaurant)
+}
+
 class NewRestaurantController: UITableViewController, UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    var addDelegate: AddDataDelegate?
+    
+    var selectedImageName: String = ""
     
     @IBOutlet var nameTextField: RoundedTextField! {
         didSet {
@@ -117,15 +125,44 @@ class NewRestaurantController: UITableViewController, UITextFieldDelegate,UIImag
         }
         //set constraints here
         
-        // get the selectedImageName
-        //if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL {
-        //selectedImageName = url.path
-        //print(selectedImageName)
-        //}
+        let leadingConstraint = NSLayoutConstraint(item: photoImageView as Any, attribute: .leading, relatedBy: .equal, toItem: photoImageView.superview, attribute: .leading, multiplier: 1, constant: 0)
+        leadingConstraint.isActive = true
+        
+        let trailingConstraint = NSLayoutConstraint(item: photoImageView as Any, attribute: .trailing, relatedBy: .equal, toItem: photoImageView.superview, attribute: .trailing, multiplier: 1, constant: 0)
+        trailingConstraint.isActive = true
+        
+        let topConstraint = NSLayoutConstraint(item: photoImageView as Any, attribute: .top, relatedBy: .equal, toItem: photoImageView.superview, attribute: .top, multiplier: 1, constant: 0)
+        topConstraint.isActive = true
+        
+        let bottomConstraint = NSLayoutConstraint(item: photoImageView as Any, attribute: .bottom, relatedBy: .equal, toItem: photoImageView.superview, attribute: .bottom, multiplier: 1, constant: 0)
+        bottomConstraint.isActive = true
+        
+        //get the selectedImageName
+        if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+            selectedImageName = url.path
+            print(selectedImageName)
+        }
         
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func saveButtonTapped(sender: AnyObject) {
+
+    if nameTextField.text == "" || typeTextField.text == "" || addressTextField.text == "" || phoneTextField.text == "" || descriptionTextView.text == "" {
+    let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the fields is blank. Please note that all fields are required.", preferredStyle: .alert)
+    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    alertController.addAction(alertAction)
+    present(alertController, animated: true, completion: nil)
+
+    return
+    }
+
+    let newValue = Restaurant(name: nameTextField.text!, type: typeTextField.text!, location: addressTextField.text!, phone: phoneTextField.text!, summary: descriptionTextView.text!, image: selectedImageName, isVisited: false)
+
+    addDelegate?.addRestaurant(item: newValue)
+
+    dismiss(animated: true, completion: nil)
+    }
     
     
 }

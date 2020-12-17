@@ -93,7 +93,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="FoodPin" id="CeX-Et-aed">
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="UtS-D8-Sfz">
-                            <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="GdJ-Q2-aE4" kind="presentation" identifier="addRestaurant" id="5H5-LD-dRL"/>
                             </connections>
@@ -710,9 +710,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="New Restaurant" id="XS5-rD-9Iu">
                         <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="cdO-uY-vU2">
-                            <color key="tintColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="M7U-Nl-AYy" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="Unt-M9-3Eq"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="icloud.and.arrow.up" catalog="system" id="1Y7-kR-J5E">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="saveButtonTappedWithSender:" destination="Mvl-Nf-f3j" id="blq-kx-0RX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -753,6 +759,7 @@
         <image name="angry" width="78" height="103"/>
         <image name="cool" width="78" height="83"/>
         <image name="happy" width="78" height="86"/>
+        <image name="icloud.and.arrow.up" catalog="system" width="64" height="52"/>
         <image name="love" width="78" height="82"/>
         <image name="paperplane.fill" catalog="system" width="64" height="60"/>
         <image name="photo" catalog="system" width="64" height="46"/>
